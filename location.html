@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Us | AutoCare Pro</title>
+    <meta name="description" content="Find AutoCare Pro in Dublin 12. Opening hours, directions, and parking information.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Bentley<span class="logo-accent">Motors</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="location.html" class="active">Find Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <span class="section-tag" data-animate="fade-down">Location</span>
+            <h1 data-animate="fade-up">Find <span class="text-accent">Us</span></h1>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="section map-section">
+        <div class="container">
+            <div class="map-layout">
+                <div class="map-container" data-animate="fade-right">
+                    <div id="map"></div>
+                </div>
+                <div class="location-info" data-animate="fade-left">
+                    <div class="info-card">
+                        <h3>Address</h3>
+                        <p>Baleally Lane, <br> Lusk, Co. Dublin</p><br>
+                        <a href="https://www.google.com/maps/dir/53.5171071,-6.1646428/53.5171103,-6.1646535" target="_blank" rel="noopener" class="btn btn-sm btn-outline">Get Directions →</a>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Opening Hours</h3>
+                        <div class="hours-table">
+                            <div class="hours-row">
+                                <span>Monday - Friday</span>
+                                <span class="hours-time">8:00 - 18:00</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Saturday & Sunday</span>
+                                <span class="hours-time">9:00 - 14:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content" data-animate="fade-up">
+                <h2>Need Your Car Looked At?</h2>
+                <p>Give us a call or drop us a message. We'll get you sorted.</p>
+                <div class="cta-actions">
+                    <a href="tel:+353863502774" class="btn btn-primary btn-large">Call Now 087 350 2774</a>
+                    <a href="contact.html" class="btn btn-outline btn-large">Send a Message</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-text">Bentley<span class="logo-accent">Motors</span>
+                    </div>
+                    <p>Professional auto repair and service in Dublin.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="location.html">Find Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <a href="tel:+353863502774">📞 087 350 2774</a>
+                    <p>Baleally Lane, Lusk, Co. Dublin</p>
+                </div>
+                <div class="footer-hours">
+                    <h4>Opening Hours</h4>
+                    <p>Mon to Fri: 8:00 – 18:00</p>
+                    <p>Saturday: 9:00 – 14:00</p>
+                    <p>Sunday: 9:00 – 14:00</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BentleyMotors. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize map
+        document.addEventListener('DOMContentLoaded', function() {
+            // Coordinates for Dublin 12 area (update to actual location)
+            const lat = 53.5171071;
+            const lng = -6.1646428;
+
+            const map = L.map('map', {
+                scrollWheelZoom: false
+            }).setView([lat, lng], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            // Custom marker
+            const icon = L.divIcon({
+                className: 'custom-marker',
+                html: '<div class="marker-pin"><span>⚙</span></div>',
+                iconSize: [40, 50],
+                iconAnchor: [20, 50],
+                popupAnchor: [0, -50]
+            });
+
+            L.marker([lat, lng], { icon: icon })
+                .addTo(map)
+                .bindPopup('<strong>Bentley Motors</strong><br>Baleally Lane, Lusk, Co. Dublin')
+                .openPopup();
+        });
+    </script>
+</body>
+</html>
